@@ -1,0 +1,282 @@
+@font-face {
+    font-family: "Karla";
+    src: url(./assets/fonts/Karla-VariableFont_wght.ttf);
+}/*Importar una fuente de forma rapida*/
+* {
+  padding: 0;                    
+  margin: 0;
+  box-sizing: border-box;
+}
+/*
+El selector * es el selector universal en CSS. Aplica los estilos a todos los elementos en el documento.
+padding: 0;:
+
+El padding es el espacio entre el contenido de un elemento y su borde. Establecer padding: 0; elimina cualquier espacio interno que pueda tener el elemento, haciendo que no haya espacio adicional alrededor del contenido dentro del borde del elemento.
+margin: 0;:
+
+El margin es el espacio externo entre el borde del elemento y los elementos circundantes. Establecer margin: 0; elimina cualquier espacio externo alrededor del elemento.
+box-sizing: border-box;:
+
+La propiedad box-sizing define cómo se calcula el tamaño total de un elemento. Con box-sizing: border-box;, el ancho y alto especificados para un elemento incluyen el padding y el border. Esto significa que el tamaño total del elemento será el especificado, sin agregar el padding o el border al tamaño total. Sin esta propiedad, el tamaño del elemento se calcula solo con el contenido, y el padding y el border se suman al tamaño total.*/
+
+:root {
+/*sirve para definir una paleta de colores en el css, despues se agregan a los elementos con un var*/
+
+    --light-green: hsl(148, 38%, 91%);
+    --medium-green: hsl(169, 82%, 27%);
+    --red: hsl(0, 66%, 56%);
+
+    
+
+    --white: hsl(0, 0%, 100%);
+    --medium-grey: hsl(186, 15%, 59%);
+    --dark-grey: hsl(187, 24%, 22%);
+}
+body {
+    font-family: "Karla", sans-serif;
+    background-color: var(--light-green);
+    min-height: 100vh;
+    /*min-height: 100vh;:
+    min-height establece la altura mínima de un elemento.
+    100vh significa "100% del viewport height" (altura de la ventana del navegador). 
+    Esto asegura que el elemento tendrá al menos la altura completa de la ventana del navegador, 
+    independientemente del contenido que tenga.
+    */ 
+    display: grid;
+    /*display: grid;:
+display: grid; convierte al elemento en un contenedor de cuadrícula CSS (CSS Grid). 
+Esto activa el sistema de diseño basado en cuadrícula para los elementos hijos del contenedor,
+ permitiendo una disposición flexible y precisa de los elementos en una cuadrícula.*/
+    place-content: center;
+    /*place-content es una propiedad abreviada para alinear el contenido dentro de un contenedor de cuadrícula. Es una combinación de las propiedades align-content y justify-content.
+align-content controla el alineamiento del contenido a lo largo del eje vertical.
+justify-content controla el alineamiento del contenido a lo largo del eje horizontal.
+center alinea el contenido tanto vertical como horizontalmente en el centro del contenedor de cuadrícula.*/
+}
+label {
+  color: var(--dark-grey);/*cambia el color de todos los label*/
+}
+input[type="text"], /*selector de input que en este caso abarca a los que son tipo "text" y "email"*/
+input[type="email"],
+textarea {
+  width: 100%;/*Establece el ancho de estos elementos al 100% del ancho del contenedor padre. 
+  Esto significa que el elemento ocupará todo el ancho disponible en el contenedor en el que se encuentra.*/
+  padding: .8rem;/*El padding añade espacio dentro del borde del elemento, entre el borde y el contenido. En este caso, se aplica un relleno de 0.8 rem (unidad relativa al tamaño de la fuente raíz) a todos los lados del elemento. Esto hace que el contenido dentro del campo de entrada tenga un espacio adicional alrededor de él.*/
+  margin-top: .6rem;/*l margin-top establece el espacio exterior en la parte superior del elemento. 
+  Aquí, se aplica un margen de 0.6 rem en la parte superior, creando un espacio entre este elemento y el elemento que está arriba de él (si lo hay).
+  */
+  border: 1px solid var(--medium-grey);/*El border define el borde del elemento. En este caso, el borde tiene un grosor de 1 píxel,*/
+  border-radius: .35rem;/*El border-radius redondea las esquinas del borde del elemento. En este caso, un radio de 0.35 rem se aplica a todas las esquinas, creando un efecto de borde ligeramente redondeado.*/
+}
+input:focus,/*el focus se refiere a que el usuario esta interactuando con el elemento*/
+textarea:focus {
+  outline: 1px solid var(--medium-green);
+  border: 1px solid var(--medium-green);
+  background-color: var(--light-green);
+}
+input[type="text"].form-error,
+input[type="email"].form-error {
+  border: 1px solid var(--red);
+}
+.required-input {
+  color: var(--medium-green);
+}
+.form-alert {
+  display: none;
+  color: var(--red);
+  margin-top: .5rem;
+}
+.form-alert.form-error {
+  display: block;
+}
+.contact-form {
+  background-color: var(--white);
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+.contact-form h1 {
+  color: var(--dark-grey);
+  margin-bottom: 1.25rem;
+}
+.contact-form .form-item {
+  margin-bottom: 1.5rem;
+}
+.contact-form .form-item:nth-child(1) { 
+  display: flex;
+  gap: 1rem;
+}
+/*display: flex;: Cambia el contenedor del primer elemento del formulario a un contenedor flex. 
+Esto organiza los elementos hijos en una fila horizontal por defecto.
+  gap: 1rem;: Añade un espacio de 1 rem entre los elementos hijos del contenedor flex.*/
+.contact-form .form-item:nth-child(3) .radio-inputs {
+  margin-top: .5rem;
+  display: flex;
+  gap: 1rem;
+}
+/*margin-top: .5rem;: Añade un margen superior de 0.5 rem para separar este contenedor de los elementos arriba de él.
+display: flex;: Cambia el contenedor de las opciones de radio a un contenedor flex, alineando sus elementos hijos en una fila horizontal.
+gap: 1rem;: Añade un espacio de 1 rem entre las opciones de radio.*/
+.contact-form .form-item:nth-child(3) .radio-inputs .radio-option {
+  cursor: pointer;
+  width: 100%;
+  padding: .8rem 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  outline: 1px solid var(--medium-grey);
+  border-radius: .35rem;
+  margin-top: .2rem;
+}
+/*cursor: pointer;: Cambia el cursor a una mano cuando se pasa sobre la opción de radio, indicando que es seleccionable.
+width: 100%;: Establece el ancho de cada opción de radio al 100% del contenedor padre.
+padding: .8rem 1.8rem;: Añade un relleno interno de 0.8 rem en la parte superior e inferior y 1.8 rem a los lados.
+display: flex;: Usa un contenedor flex para alinear el contenido interno de la opción de radio.
+align-items: center;: Alinea verticalmente los elementos hijos en el centro del contenedor flex.
+gap: 1rem;: Añade un espacio de 1 rem entre los elementos dentro de la opción de radio.
+outline: 1px solid var(--medium-grey);: Añade un contorno de 1 píxel de grosor con un color gris medio alrededor de la opción de radio.
+border-radius: .35rem;: Redondea las esquinas de la opción de radio con un radio de 0.35 rem.
+margin-top: .2rem;: Añade un margen superior de 0.2 rem entre cada opción de radio.*/
+.contact-form .form-item:nth-child(3) .radio-inputs .radio-option.active {
+  background-color: var(--light-green);
+}/*background-color: var(--medium-green);: Cambia el color de fondo de la opción de radio activa a verde medio, utilizando la variable CSS --medium-green.*/
+.contact-form .form-item:nth-child(3) input[type="radio"] {
+  appearance: none;
+  width: .7rem;
+  height: .6rem;
+  outline: 1px solid var(--medium-grey);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+/*appearance: none;: Elimina el estilo predeterminado del input de tipo radio, permitiendo aplicar un estilo personalizado.
+width: .7rem; y height: .6rem;: Establece el tamaño del input radio.
+outline: 1px solid var(--medium-grey);: Añade un contorno de 1 píxel de grosor con un color gris medio alrededor del input radio.
+outline-offset: 3px;: Ajusta el contorno hacia fuera desde el borde del input.
+border-radius: 50%;: Redondea el input radio para que sea circular.*/
+
+.contact-form .form-item:nth-child(3) input[type="radio"]:checked {
+  background-color: var(--medium-green);
+  outline: 1px solid var(--medium-green);
+
+}/*background-color: var(--medium-green);: Cambia el color de fondo del radio button seleccionado a verde medio.
+outline: 1px solid var(--medium-green);: Cambia el contorno del radio button seleccionado a verde medio.*/
+
+.contact-form .form-item:nth-child(3) .radio-inputs .radio-option label {
+  cursor: pointer;
+  width: 100%;
+
+}/*cursor: pointer;: Cambia el cursor a una mano cuando se pasa sobre la etiqueta de la opción de radio.
+width: 100%;: Establece el ancho de la etiqueta al 100% del contenedor padre.*/
+.contact-form .form-item:nth-child(5) {
+  margin-bottom: 2rem;
+}/*margin-bottom: 2rem;: Añade un margen inferior de 2 rem para separar el quinto item del formulario de los elementos que están debajo de él.*/
+.contact-form .form-item:nth-child(5) div {
+  display: flex;
+  gap: 1rem;
+}/*display: flex;: Cambia el contenedor de div dentro del quinto item del formulario a un contenedor flex.
+gap: 1rem;: Añade un espacio de 1 rem entre los elementos dentro del contenedor flex.*/
+.contact-form .form-item:nth-child(5) input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: var(--medium-green);
+}/*cursor: pointer;: Cambia el cursor a una mano cuando se pasa sobre el checkbox.
+accent-color: var(--medium-green);: Cambia el color del checkbox a verde medio, utilizando la variable --medium-green.*/
+.contact-form .form-item:nth-child(5) label {
+  cursor: pointer;
+}/*cursor: pointer;: Cambia el cursor a una mano cuando se pasa sobre la etiqueta.*/
+.contact-form .submit-btn {
+  cursor: pointer;
+  background-color: var(--medium-green);
+  color: var(--white);
+  width: 100%;
+  padding: .75rem;
+  border: 0;
+  outline: 0;
+  border-radius: .35rem;
+}/*cursor: pointer;: Cambia el cursor a una mano cuando se pasa sobre el botón de envío.
+background-color: var(--medium-green);: Establece el color de fondo del botón de envío a verde medio.
+color: var(--white);: Establece el color del texto del botón a blanco.
+width: 100%;: Establece el ancho del botón al 100% del contenedor padre.
+padding: .75rem;: Añade un relleno interno de 0.75 rem en todos los lados del botón.
+border: 0; y outline: 0;: Elimina el borde y el contorno predeterminados del botón.
+border-radius: .35rem;: Redondea las esquinas del botón con un radio de 0.35 rem.*/
+.contact-form .submit-btn:hover {
+  background-color: var(--dark-grey);
+}/*cambia el color del botón cuando se le da click*/
+.success-message {
+  background-color: var(--dark-grey);
+  color: var(--light-green);
+  width: max-content;
+  padding: 1.5rem;
+  pointer-events: none;
+  opacity: 0;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: .60rem;
+}
+.success-message.active {
+  display: block;
+  pointer-events: all;
+
+  animation-name: fadeOut;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {/*La regla @keyframes se usa para definir animaciones en CSS. Permite especificar los estilos en varios puntos de la animación, creando así efectos visuales complejos.*/
+  0%, 25%, 50%, 75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+/*@keyframes fadeOut:
+
+Define una animación llamada fadeOut.
+0%, 25%, 50%, 75% { opacity: 1; }:
+
+Estos son los puntos de la animación donde se definen los estilos.
+0%: Al principio de la animación.
+25%: Un cuarto del camino a través de la animación.
+50%: A mitad de la animación.
+75%: Tres cuartos del camino a través de la animación.
+En todos estos puntos, la opacidad del elemento es 1, lo que significa que es completamente visible.
+100% { opacity: 0; }:
+
+Al final de la animación, en el 100%, la opacidad del elemento se establece en 0, haciendo que el elemento sea completamente invisible.*/
+.success-message .message-header {
+  color: var(--white);
+  margin-bottom: .5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center; 
+  gap: .5rem;
+}
+
+@media (max-width: 380px) {
+  .contact-form .form-item:nth-child(1) {
+    flex-direction: column;
+  }
+  .contact-form .form-item:nth-child(3) .radio-inputs {
+    flex-direction: column;
+  }
+  textarea {
+    height: 200px;
+  }
+  .success-message {
+    width: 34ch;
+    top: 4%;
+  }
+}
+/*@media (max-width: 380px):
+Esta consulta de medios aplica estilos solo cuando el ancho de la ventana del navegador es igual o menor a 380 píxeles. Es útil para ajustar el diseño en dispositivos con pantallas pequeñas, como teléfonos móviles.
+
+El código CSS está diseñado para ajustar el diseño y la disposición de los elementos del formulario en pantallas pequeñas (de hasta 380 píxeles de ancho). Las modificaciones incluyen:
+
+Cambiar la dirección del contenedor flex a columna para un diseño vertical en pantallas pequeñas.
+Ajustar el tamaño del área de texto para que sea más adecuado en dispositivos con menos espacio.
+Asegurar que el mensaje de éxito tenga un ancho adecuado y esté posicionado correctamente para que sea visible y legible en pantallas pequeñas.
+*/
